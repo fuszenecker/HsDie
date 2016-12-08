@@ -3,6 +3,8 @@ module MyMonadMod
       MyMonadType
     ) where
 
+import Control.Applicative
+
 data MyMonadType x = MyMonad x
                    | Error String
 
