@@ -1,5 +1,6 @@
 module MyMonadMod
-    ( MyMonadType
+    (
+      MyMonadType
     ) where
 
 data MyMonadType x = MyMonad x
