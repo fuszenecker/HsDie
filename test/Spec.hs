@@ -2,11 +2,14 @@ import Lib (isPrime)
 import Control.Parallel
 import Control.Parallel.Strategies
 
-main :: IO ()
+main :: IO Integer
 main = do
   putStrLn "Test suite *****"
   putStrLn $ "IsPrime: " ++ show isPrimeTest
-  putStrLn $ "ALL TESTS: " ++ show isPrimeTest
+
+  if isPrimeTest
+    then return 0
+    else return 1
 
 isPrimeTestNumbers = [
     (0, False),
