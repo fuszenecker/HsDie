@@ -1,7 +1,9 @@
 module MyMonad
-    (
-      MyMonadType
+    ( MyMonadType
     , liftMyMonad
+    , v1
+    , sv2
+    , sv3
     ) where
 
 import Control.Applicative
@@ -41,3 +43,12 @@ op3 :: MyMonadType Integer
 op3 = do
   o1 <- return 100
   if o1 == 100 then return 101 else fail "MyError"
+
+v1 :: Maybe Integer
+v1 = Just 300
+
+sv2 :: Maybe (Integer -> Integer)
+sv2 = (+) <$> v1
+
+sv3 :: Maybe Integer
+sv3 = sv2 <*> Just 1
