@@ -1,6 +1,7 @@
-module MyMonadMod
+module MyMonad
     (
       MyMonadType
+    , liftMyMonad
     ) where
 
 import Control.Applicative
@@ -16,6 +17,10 @@ instance Monad MyMonadType where
   Error s >>= f = Error s
   -- fail :: String -> MyMonadType a
   fail = Error
+
+liftMyMonad :: MyMonadType a -> Maybe a
+liftMyMonad (MyMonad x) = Just x
+liftMyMonad (Error _) = Nothing
 
 instance Functor MyMonadType where
   -- fmap :: (a -> b) -> MyMonadType a -> MyMonadType b

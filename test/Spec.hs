@@ -1,4 +1,5 @@
-import Lib (isPrime)
+import Lib
+import MyMonad
 import Control.Parallel
 import Control.Parallel.Strategies
 
@@ -6,8 +7,9 @@ main :: IO Integer
 main = do
   putStrLn "Test suite *****"
   putStrLn $ "IsPrime: " ++ show isPrimeTest
+  putStrLn $ "MyMonad result: " ++ show myMonadTest
 
-  if isPrimeTest
+  if isPrimeTest && myMonadTest
     then return 0
     else return 1
 
@@ -30,3 +32,10 @@ isPrimeTestNumbers = [
 
 isPrimeTest :: Bool
 isPrimeTest = all (\(x, b) -> isPrime x == b) isPrimeTestNumbers
+
+i :: MyMonadType Integer
+i =
+  return 200
+
+myMonadTest =
+  liftMyMonad i == Just 200
