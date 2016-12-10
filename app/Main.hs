@@ -1,7 +1,7 @@
 module Main where
 
 import Lib
-import MyMonadMod
+import MyMonad
 
 i :: MyMonadType Integer
 i =
