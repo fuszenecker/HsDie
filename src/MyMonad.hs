@@ -34,13 +34,13 @@ instance Applicative MyMonadType where
   -- (<*>) :: MyMonadType (a -> b) -> MyMonadType a -> MyMonadType b
   (MyMonad x) <*> g = fmap x g
 
-op1 :: MyMonadType Integer
-op1 = return 100
-op2 :: MyMonadType Integer
-op2 = op1 >>= (\x -> if x == 100 then MyMonad 101 else Error "Not hundred")
+operation1 :: MyMonadType Integer
+operation1 = return 100
+operation2 :: MyMonadType Integer
+operation2 = operation1 >>= (\x -> if x == 100 then MyMonad 101 else Error "Not hundred")
 
-op3 :: MyMonadType Integer
-op3 = do
+operation3 :: MyMonadType Integer
+operation3 = do
   o1 <- return 100
   if o1 == 100 then return 101 else fail "MyError"
 
