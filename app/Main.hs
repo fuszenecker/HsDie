@@ -10,4 +10,4 @@ i =
 main :: IO ()
 main = do
   putStrLn $ "MyMonad result: " ++ show (M.liftMyMonad i)
-  putStrLn $ "X: " ++ show (M.isPrimes [100000000..100000030])
+  putStrLn $ "X: " ++ show (L.isPrimes [100000000..100000030])
