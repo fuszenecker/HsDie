@@ -1,13 +1,13 @@
 module Main where
 
-import Lib
-import MyMonad
+import qualified Lib as L
+import qualified MyMonad as M
 
-i :: MyMonadType Integer
+i :: M.MyMonadType Integer
 i =
   return 200
 
 main :: IO ()
 main = do
-  putStrLn $ "MyMonad result: " ++ show (liftMyMonad i)
-  putStrLn $ "X: " ++ show (isPrimes [100000000..100000030])
+  putStrLn $ "MyMonad result: " ++ show (M.liftMyMonad i)
+  putStrLn $ "X: " ++ show (M.isPrimes [100000000..100000030])
