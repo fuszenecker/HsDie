@@ -3,6 +3,8 @@ module Lib
     ( someFunc
     , isPrime
     , isPrimes
+    , permutations
+    , remove
     ) where
 
 import Control.Parallel
@@ -36,3 +38,17 @@ fact n = foldr (*) 1 [1..n]
 -- |Calculates the factorial of the argument
 fact' :: Integer -> Integer
 fact' n = product [1..n]
+
+-- |Deletes a value from the list
+remove :: (Eq a) => [a] -> a -> [a]
+remove [] _ = []
+remove (x:xs) i
+  | x == i = remove xs i 
+  | otherwise = x : remove xs i
+
+permutations :: Eq a => [a] -> [[a]]
+permutations [] = [[]]
+permutations as = do a <- as
+                     let l = remove as a
+                     ls <- permutations l
+                     return $ a : ls
