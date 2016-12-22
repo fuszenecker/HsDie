@@ -4,7 +4,7 @@ module Lib
     , isPrime
     , isPrimes
     , permutations
-    , remove
+    , permutations2
     ) where
 
 import Control.Parallel
@@ -52,3 +52,10 @@ permutations as = do a <- as
                      let l = remove as a
                      ls <- permutations l
                      return $ a : ls
+
+permutationsAux :: (Eq a) => [a] -> [a]-> [[a]]
+permutationsAux path [] = [path]
+permutationsAux path arr = concatMap (\item -> permutationsAux (path ++ [item]) (remove arr item)) arr
+
+permutations2 :: (Eq a) => [a]-> [[a]]
+permutations2 = permutationsAux []
