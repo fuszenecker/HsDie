@@ -16,6 +16,15 @@ before_install:
 install:
 - stack -j 2 setup --no-terminal
 - stack -j 2 build --only-snapshot --no-terminal --haddock
+- stack install
 
 script:
 - stack --no-terminal --skip-ghc-check test
+
+deploy:
+  provider: releases
+  api_key: "b648b645e2fddac1f914a4f7139443e690270d06"
+  file: "*"
+  skip_cleanup: true
+  on:
+    tags: true
