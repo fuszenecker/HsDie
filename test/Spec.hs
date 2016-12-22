@@ -8,8 +8,9 @@ main = do
   putStrLn "Test suite *****"
   putStrLn $ "IsPrime: " ++ show isPrimeTest
   putStrLn $ "MyMonad result: " ++ show myMonadTest
+  putStrLn $ "Permutations result: " ++ show permutationsTest
 
-  if isPrimeTest && myMonadTest
+  if isPrimeTest && myMonadTest && permutationsTest
     then return 0
     else return 1
 
@@ -39,3 +40,6 @@ i =
 
 myMonadTest =
   liftMyMonad i == Just 200
+
+permutationsTest =
+  (length . permutations2) [1,2,3,4,5,6,7] == 5040
