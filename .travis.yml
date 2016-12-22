@@ -24,7 +24,7 @@ script:
 deploy:
   provider: releases
   api_key: "b648b645e2fddac1f914a4f7139443e690270d06"
-  file: "*"
+  file: "/home/travis/build/fuszenecker/HaskellDemo/.stack-work/install/*"
   skip_cleanup: true
   on:
     tags: true
