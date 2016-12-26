@@ -62,6 +62,7 @@ permutationsAux :: (Eq a) => [a] -> [a]-> [[a]]
 permutationsAux path [] = [path]
 permutationsAux path arr = concatMap (\item -> permutationsAux (path ++ [item]) (remove arr item)) arr
 
+-- |Tells all the permutations of an array
 permutations2 :: (Eq a) => [a]-> [[a]]
 permutations2 = permutationsAux []
 
@@ -75,15 +76,18 @@ window l = filter (\x -> length x == l) . map (take l) . tails
 -- v = map (\s -> (s, product (map (\c -> ord c - ord '0') s))) ss
 -- e8res = sortBy (\(x,v1) (y,v2) -> if v1 > v2 then GT else LT) v
 
+-- |Finds all divisors of the number
 divisors :: (Integral a) => a -> [a]
 divisors x = [x `div` i | i <- [2..x], x `mod` i == 0]
 
+-- |Tells if the two arguments are amicable
 areAmicable :: (Integral a) => a -> a -> Bool
 areAmicable x y
   | x < 0 || y < 0 = False
   | x == y = False
 areAmicable x y = (sum (divisors x) == y) && (sum (divisors y) == x)
 
+-- |Tells all the amicable numbers until *n*
 amicablesTill :: (Integral a) => a -> [(a, a)]
 amicablesTill n
   | n < 2 = []
