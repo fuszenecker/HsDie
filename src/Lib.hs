@@ -80,7 +80,7 @@ window l = filter (\x -> length x == l) . map (take l) . tails
 divisors :: (Integral a) => a -> [a]
 divisors x = [x `div` i | i <- [2..x], x `mod` i == 0]
 
--- |Tells if the two arguments are amicable
+-- |Tells if the two arguments are amicable (Project Euler 21)
 areAmicable :: (Integral a) => a -> a -> Bool
 areAmicable x y
   | x < 0 || y < 0 = False
