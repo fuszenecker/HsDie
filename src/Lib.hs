@@ -9,11 +9,19 @@ module Lib
     , divisors
     , areAmicable
     , amicablesTill
+    , createSumDivisorCacheTill
+    , findAmicables
+    , extractAmicables
+    , digitize
+    , euler30
+    , euler31
+    , euler24
     ) where
 
 import Control.Parallel
 import Control.Parallel.Strategies
 import Data.List
+import Data.Char
 
 -- |Very basic print function (alias)
 someFunc :: IO ()
@@ -92,3 +100,40 @@ amicablesTill :: (Integral a) => a -> [(a, a)]
 amicablesTill n
   | n < 2 = []
 amicablesTill n = filter (uncurry areAmicable) [(x, y) | x <- [1..n], y <- [x..n]]
+
+createSumDivisorCacheTill :: (Integral a) => a -> [(a, a, [a])]
+createSumDivisorCacheTill n = 
+  [(x, (sum . divisors) x, divisors x) | x <- [1..n]]
+
+findSumInCache :: (Integral a) => [(a, a, [a])] -> a -> a -> Bool
+findSumInCache cache value index =
+  case f of Nothing -> False
+            Just (i, _, _) -> i == index
+  where f = (find (\(_, v, _) -> v == value) cache)
+
+findAmicables :: (Integral a) => [(a, a, [a])] -> [(a, a, [a])]
+findAmicables cache = filter (\(n, s, ds) -> n /= s && findSumInCache cache n s) cache
+
+extractAmicables :: (Integral a) => [(a, a, [a])] -> [a]
+extractAmicables cache = map (\(n, s, ds) -> n) $ findAmicables cache 
+
+digitize :: Int -> [Int]
+digitize = map (\d -> ord d - ord '0') . show
+
+euler30 = [x | x <- [1..], sum (map (\d -> d ^ 5) (digitize x)) == x]
+
+euler24 = (sort (permutations "0123456789")) !! 999999
+
+
+euler31 = [
+    (p1, p2, p5, p10, p20, p50, p100, p200) |
+    p1 <- [0..200],
+    p2 <- [0..100],
+    p5 <- [0..40],
+    p10 <- [0..20],
+    p20 <- [0..10],
+    p50 <- [0..4],
+    p100 <- [0..2],
+    p200 <- [0..1],
+    p1 + p2*2 + p5*5 * p10*10 + p20*20 + p50*50 + p100*100 + p200*200 == 200
+  ]
