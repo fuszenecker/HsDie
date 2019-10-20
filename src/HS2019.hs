@@ -2,11 +2,10 @@ module HS2019 (
     main
 ) where
 
-import Data.List (sort, nub)
+import Data.List (sort, nub, unfoldr)
 
 -- F# operators
 (|>) x f = f x
-(>>) g f x = f $ g x
 
 ispandigital :: Integer -> Integer -> Bool
 ispandigital x y =
@@ -35,4 +34,36 @@ euler32 () =
     |> sum
     |> show
 
-main () = euler32 ()
+dedupFactorize :: Integer -> [Integer]
+dedupFactorize n = reverse $ nub $ factorize n
+
+factorize :: Integer -> [Integer]
+factorize n =
+    doFactorize n 2 []
+
+doFactorize :: Integer -> Integer -> [Integer] -> [Integer]
+doFactorize 1 _ factors = factors
+doFactorize n divisor factors =
+    case n `mod` divisor of
+        0 -> doFactorize (n `div` divisor) divisor (divisor : factors)
+        _ -> doFactorize n (divisor + 1) factors
+
+euler33 :: () -> String
+euler33 () =
+    show $
+    take 1 $ 
+    filter fst $
+    unfoldr
+        (\i -> Just(
+            (length(dedupFactorize $ i) == 4 &&
+            length(dedupFactorize $ i + 1) == 4 &&
+            length(dedupFactorize $ i + 2) == 4 &&
+            length(dedupFactorize $ i + 3) == 4, i
+            )
+            , i + 1)
+        )
+        1
+
+main () =
+    -- euler32 ()
+    euler33()
