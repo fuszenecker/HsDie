@@ -2,7 +2,14 @@ module HS2019 (
     main
 ) where
 
-import Data.List (sort, nub, unfoldr)
+import Data.List
+import Control.Parallel
+import Control.Monad.Par
+
+-- import qualified Prelude
+-- import Data.Array.Parallel
+-- import Data.Array.Parallel.Prelude
+-- import Data.Array.Parallel.Prelude.Double
 
 -- F# operators
 (|>) x f = f x
@@ -48,21 +55,25 @@ doFactorize n divisor factors =
         0 -> doFactorize (n `div` divisor) divisor (divisor : factors)
         _ -> doFactorize n (divisor + 1) factors
 
+areSubsequentialFactorized :: Integer -> Bool
+areSubsequentialFactorized n =
+    p1 `par` p2 `par` p3 `par` (pseq p4 (p1 && p2 && p3 && p4))
+    where
+        p1 = length(dedupFactorize $ n) == 4
+        p2 = length(dedupFactorize $ n + 1) == 4
+        p3 = length(dedupFactorize $ n + 2) == 4
+        p4 = length(dedupFactorize $ n + 3) == 4
+
+areSubsequentialFactorized2 :: Integer -> Bool
+areSubsequentialFactorized2 n =
+    all (== 4) $ runPar $ parMap (\n -> length(dedupFactorize $ n)) [n, n+1, n+2, n+3] 
+
 euler33 :: () -> String
 euler33 () =
     show $
     take 1 $ 
     filter fst $
-    unfoldr
-        (\i -> Just(
-            (length(dedupFactorize $ i) == 4 &&
-            length(dedupFactorize $ i + 1) == 4 &&
-            length(dedupFactorize $ i + 2) == 4 &&
-            length(dedupFactorize $ i + 3) == 4, i
-            )
-            , i + 1)
-        )
-        1
+    unfoldr (\i -> Just((areSubsequentialFactorized2 i, i), i + 1)) 1
 
 main () =
     -- euler32 ()

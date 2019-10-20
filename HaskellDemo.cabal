@@ -18,14 +18,14 @@ library
   exposed-modules:     Lib,
                        MyMonad,
                        HS2019
-  build-depends:       base >= 4.7 && < 5, parallel
+  build-depends:       base >= 4.7 && < 5, parallel, monad-par
+  ghc-options:         -threaded -rtsopts -with-rtsopts=-N
 
 executable HaskellDemo-exe
   hs-source-dirs:      app
   main-is:             Main.hs
   ghc-options:         -threaded -rtsopts -with-rtsopts=-N
-  build-depends:       base, parallel
-                     , HaskellDemo
+  build-depends:       base, parallel, HaskellDemo
 
 test-suite HaskellDemo-test
   type:                exitcode-stdio-1.0
@@ -37,4 +37,4 @@ test-suite HaskellDemo-test
 
 source-repository head
   type:     git
-  location: https://github.com/githubuser/HaskellDemo
+  location: https://github.com/fuszenecker/HaskellDemo
