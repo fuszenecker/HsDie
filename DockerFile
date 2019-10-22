@@ -7,4 +7,4 @@ RUN stack --local-bin-path /dist install
 
 FROM haskell:8 AS runner
 COPY --from=build /dist/* /bin
-ENTRYPOINT ["/bin/HaskellDemo-exe"]
+CMD ["/bin/HaskellDemo-exe"]
