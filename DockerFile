@@ -1,0 +1,10 @@
+FROM haskell:8 AS build
+ENV HOME /
+COPY . /src
+WORKDIR /src
+RUN stack --install-ghc build
+RUN stack install
+
+FROM haskell:8 AS runner
+COPY --from=build COPY /.local/bin/* /bin/
+ENTRYPOINT ["/bin/HaskellDemo-exe"]
