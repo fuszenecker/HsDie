@@ -13,3 +13,9 @@ main = do
   putStrLn $ "MyMonad result: " ++ show (M.liftMyMonad i)
   putStrLn $ "X: " ++ show (L.isPrimes [1020..1030])
   putStrLn $ "HS 2019 monstrat: " ++ show (H.main ())
+
+  putStrLn "This is the Haskell code. Type 'EXIRE VOLO' to exit."
+  
+  s <- getLine 
+
+  unless (s == "EXIRE VOLO") $ main

@@ -33,13 +33,17 @@ pandigitalProducts () =
 
         ispandigital i j ]
 
+-- | Euler problem 32.
 euler32 :: () -> String
 euler32 () =
+    "Euler 32: " ++
+
     pandigitalProducts ()
     |> map (\(x, y, p) -> p)    -- get the product only
     |> nub                      -- distinct
     |> sum
     |> show
+
 
 dedupFactorize :: Integer -> [Integer]
 dedupFactorize n = reverse $ nub $ factorize n
@@ -76,5 +80,5 @@ euler33 () =
     unfoldr (\i -> Just((areSubsequentialFactorized2 i, i), i + 1)) 1
 
 main () =
-    -- euler32 ()
-    euler33()
+    euler32 ()
+    -- euler33()
