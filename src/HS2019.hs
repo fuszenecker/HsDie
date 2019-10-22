@@ -57,7 +57,7 @@ doFactorize n divisor factors =
 
 areSubsequentialFactorized :: Integer -> Bool
 areSubsequentialFactorized n =
-    p1 `par` p2 `par` p3 `par` (pseq p4 (p1 && p2 && p3 && p4))
+    p1 `par` p2 `par` p3 `par` p4 `pseq` (p1 && p2 && p3 && p4)
     where
         p1 = length(dedupFactorize $ n) == 4
         p2 = length(dedupFactorize $ n + 1) == 4

@@ -1,6 +1,6 @@
 name:                HaskellDemo
 version:             2.0.0.0
-github:              "githubuser/fuszenecker/HaskellDemo"
+github:              "fuszenecker/HaskellDemo"
 license:             MIT
 author:              "Fuszenecker Róbert"
 maintainer:          "robert.fuszenecker@outlook.com"
@@ -34,7 +34,8 @@ executables:
     ghc-options:
     - -threaded
     - -rtsopts
-    - -with-rtsopts=-N
+    - -with-rtsopts=-N 
+    - -O2
     dependencies:
     - HaskellDemo
     - parallel
