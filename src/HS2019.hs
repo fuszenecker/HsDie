@@ -98,10 +98,11 @@ t2 n s = sum $ take n (pseudoRandom s)
 -- | Parallalism test
 parallelTests :: () -> Integer
 parallelTests () = 
-    -- pseq (f1 `par` f2) (f1 + f2)
-    pseq pars sers
+    pseq parallelTasks serialTasks
     where
-        pars = foldr par tinit tseq
-        sers = foldr (+) tinit tseq
-        tinit = t2 100000 2
-        tseq = [t2 100000 x | x <- [3..10]]
+        parallelTasks = foldr par taskInit taskSequence
+        serialTasks = foldr (+) taskInit taskSequence
+        taskInit = t2 100000 2
+        taskSequence = [t2 100000 x | x <- [3..10]]
+
+
