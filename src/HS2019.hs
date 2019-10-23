@@ -88,7 +88,9 @@ main () =
 ----- oOo -----
 
 pseudoRandom :: Integer -> [Integer]
-pseudoRandom = unfoldr (\i -> Just((2 ^ i) `mod` 65537, (2 ^ i) `mod` 65537))
+pseudoRandom = unfoldr (\i -> Just(f i, f i))
+    where
+        f x = (2 ^ x) `mod` 65537
 
 t2 :: Int -> Integer -> Integer
 t2 n s = sum $ take n (pseudoRandom s)
