@@ -92,8 +92,8 @@ pseudoRandom = unfoldr (\i -> Just(f i, f i))
     where
         f x = (2 ^ x) `mod` 65537
 
-t2 :: Int -> Integer -> Integer
-t2 n s = sum $ take n (pseudoRandom s)
+sumOfNPseudoNumbers :: Int -> Integer -> Integer
+sumOfNPseudoNumbers n s = sum $ take n (pseudoRandom s)
 
 -- | Parallalism test
 parallelTests :: () -> Integer
@@ -102,7 +102,7 @@ parallelTests () =
     where
         parallelTasks = foldr par taskInit taskSequence
         serialTasks = foldr (+) taskInit taskSequence
-        taskInit = t2 100000 2
-        taskSequence = [t2 100000 x | x <- [3..10]]
+        taskInit = sumOfNPseudoNumbers 100000 2
+        taskSequence = [sumOfNPseudoNumbers 100000 x | x <- [3..10]]
 
 
