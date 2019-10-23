@@ -91,7 +91,7 @@ main () =
 pseudoRandom :: Integer -> [Integer]
 pseudoRandom {- seed -} = unfoldr (\i -> Just(f i, f i))
     where
-        f x = (2 ^ x) `mod` 242977748933907145598420546284924356197 {- 128 bit prime -}
+        f x = (2 ^ x) `mod` 65537 {- 2048 bit prime :-) -}
 
 -- | Calculates the sum of the first 'numberOfRandomsToSum' pseudo-random numbers with seed 'seed'
 sumOfNPseudoNumbers :: Int -> Integer -> Integer
