@@ -14,7 +14,7 @@
       },
       "label": "stack build",
       "type": "shell",
-      "command": "echo START_STACK_BUILD && cd ${workspaceRoot} && stack build && echo END_STACK_BUILD "
+      "command": "stack install"
     },
     { 
       "group": "build",
