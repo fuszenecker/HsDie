@@ -95,7 +95,7 @@ pseudoRandom {- seed -} = unfoldr (\i -> Just(f i, f i))
 
 -- | Calculates the sum of the first 'numberOfRandomsToSum' pseudo-random numbers with seed 'seed'
 sumOfNPseudoNumbers :: Int -> Integer -> Integer
-sumOfNPseudoNumbers numberOfRandomsToSum seed = sum $ take numberOfRandomsToSum (pseudoRandom seed)
+sumOfNPseudoNumbers numberOfRandomsToSum {- seed -} = sum . take numberOfRandomsToSum . pseudoRandom
 
 -- | Parallalism test
 parallelTests :: () -> Integer
