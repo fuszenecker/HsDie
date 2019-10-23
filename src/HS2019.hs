@@ -87,13 +87,15 @@ main () =
 
 ----- oOo -----
 
+-- | Generates random number sequence starting with 'seed'
 pseudoRandom :: Integer -> [Integer]
-pseudoRandom = unfoldr (\i -> Just(f i, f i))
+pseudoRandom {- seed -} = unfoldr (\i -> Just(f i, f i))
     where
         f x = (2 ^ x) `mod` 65537
 
+-- | Calculates the sum of the first 'numberOfRandomsToSum' pseudo-random numbers with seed 'seed'
 sumOfNPseudoNumbers :: Int -> Integer -> Integer
-sumOfNPseudoNumbers n s = sum $ take n (pseudoRandom s)
+sumOfNPseudoNumbers numberOfRandomsToSum seed = sum $ take numberOfRandomsToSum (pseudoRandom seed)
 
 -- | Parallalism test
 parallelTests :: () -> Integer
