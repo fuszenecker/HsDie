@@ -1,5 +1,6 @@
 module HS2019 (
-    main
+    main,
+    parallelTests
 ) where
 
 import Data.List
@@ -44,7 +45,6 @@ euler32 () =
     |> sum
     |> show
 
-
 dedupFactorize :: Integer -> [Integer]
 dedupFactorize n = reverse $ nub $ factorize n
 
@@ -74,11 +74,32 @@ areSubsequentialFactorized2 n =
 
 euler33 :: () -> String
 euler33 () =
-    show $
-    take 1 $ 
-    filter fst $
-    unfoldr (\i -> Just((areSubsequentialFactorized2 i, i), i + 1)) 1
-
+    "Euler 33: " ++ (
+        show $
+        take 1 $ 
+        filter fst $
+        unfoldr (\i -> Just((areSubsequentialFactorized i, i), i + 1)) 1
+    )
+    
 main () =
-    euler32 ()
-    -- euler33()
+    -- euler32 ()
+    euler32()
+
+----- oOo -----
+
+pseudoRandom :: Integer -> [Integer]
+pseudoRandom = unfoldr (\i -> Just((2 ^ i) `mod` 65537, (2 ^ i) `mod` 65537))
+
+t2 :: Int -> Integer -> Integer
+t2 n s = sum $ take n (pseudoRandom s)
+
+-- | Parallalism test
+parallelTests :: () -> Integer
+parallelTests () = 
+    -- pseq (f1 `par` f2) (f1 + f2)
+    pseq pars sers
+    where
+        pars = foldr par tinit tseq
+        sers = foldr (+) tinit tseq
+        tinit = t2 100000 2
+        tseq = [t2 100000 x | x <- [3..10]]

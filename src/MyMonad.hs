@@ -18,7 +18,7 @@ instance Monad MyMonadType where
   (MyMonad x) >>= f = f x
   Error s >>= f = Error s
   -- fail :: String -> MyMonadType a
-  fail = Error
+  --fail = Error
 
 liftMyMonad :: MyMonadType a -> Maybe a
 liftMyMonad (MyMonad x) = Just x
@@ -39,10 +39,10 @@ operation1 = return 100
 operation2 :: MyMonadType Integer
 operation2 = operation1 >>= (\x -> if x == 100 then MyMonad 101 else Error "Not hundred")
 
-operation3 :: MyMonadType Integer
-operation3 = do
-  o1 <- return 100
-  if o1 == 100 then return 101 else fail "MyError"
+-- operation3 :: MyMonadType Integer
+-- operation3 = do
+--   o1 <- return 100
+--   if o1 == 100 then return 101 else fail "MyError"
 
 v1 :: Maybe Integer
 v1 = Just 300

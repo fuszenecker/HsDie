@@ -3,6 +3,7 @@ module Main where
 import qualified Lib as L
 import qualified MyMonad as M
 import qualified HS2019 as H
+import Control.Monad
 
 i :: M.MyMonadType Integer
 i =
@@ -13,6 +14,7 @@ main = do
   putStrLn $ "MyMonad result: " ++ show (M.liftMyMonad i)
   putStrLn $ "X: " ++ show (L.isPrimes [1020..1030])
   putStrLn $ "HS 2019 monstrat: " ++ show (H.main ())
+  putStrLn $ "HS 2019 parallel tests: " ++ show (H.parallelTests ())
 
   putStrLn "This is the Haskell code. Type 'EXIRE VOLO' to exit."
   
