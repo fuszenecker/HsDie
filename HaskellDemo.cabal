@@ -6,73 +6,72 @@ cabal-version: 1.12
 --
 -- hash: c1daa38cd2a0d4fdb256d55fdd5c09eb0625a2a23dcaee6311874af4dae5de78
 
-name:           HaskellDemo
-version:        2.0.0.0
-description:    Please see the README on GitHub at <https://github.com/githubuser/x#readme>
-homepage:       https://github.com/fuszenecker/HaskellDemo#readme
-bug-reports:    https://github.com/fuszenecker/HaskellDemo/issues
-author:         Fuszenecker Róbert
-maintainer:     robert.fuszenecker@outlook.com
-copyright:      2019, Fuszenecker Róbert
-license:        MIT
-license-file:   LICENSE
-build-type:     Simple
-extra-source-files:
-    README.md
+name:                   HaskellDemo
+version:                2.0.0.0
+description:            Please see the README on GitHub at <https://github.com/githubuser/x#readme>
+homepage:               https://github.com/fuszenecker/HaskellDemo#readme
+bug-reports:            https://github.com/fuszenecker/HaskellDemo/issues
+author:                 Fuszenecker Róbert
+maintainer:             robert.fuszenecker@outlook.com
+copyright:              2019, Fuszenecker Róbert
+license:                MIT
+license-file:           LICENSE
+build-type:             Simple
+extra-source-files:     README.md
 
 source-repository head
-  type: git
-  location: https://github.com/fuszenecker/HaskellDemo
+    type: git
+    location: https://github.com/fuszenecker/HaskellDemo
 
 library
-  exposed-modules:
-      HS2019
-      Lib
-      Var
-      MyMonad
-  other-modules:
-      Paths_HaskellDemo
-  hs-source-dirs:
-      src
-  ghc-options: -O2
-  build-depends:
-      base >=4.7 && <5
-    , monad-par
-    , mtl
-    , parallel
-    , transformers
-    , hslua
-    , text
-    , direct-sqlite
-  default-language: Haskell2010
+    exposed-modules:
+            HS2019
+            Lib
+            Var
+            MyMonad
+    other-modules:
+            Paths_HaskellDemo
+    hs-source-dirs:
+            src
+    ghc-options: -O2
+    build-depends:
+            base >=4.7 && <5,
+            monad-par,
+            mtl,
+            parallel,
+            transformers,
+            hslua,
+            text,
+            direct-sqlite
+    default-language: Haskell2010
 
 executable HaskellDemo-exe
-  main-is: Main.hs
-  other-modules:
-      Paths_HaskellDemo
-  hs-source-dirs:
-      app
-  ghc-options: -threaded -rtsopts -with-rtsopts=-s
-  build-depends:
-      HaskellDemo
-    , base >=4.7 && <5
-    , monad-par
-    , mtl
-    , parallel
-    , transformers
-  default-language: Haskell2010
+    main-is: Main.hs
+    other-modules:
+            Paths_HaskellDemo
+    hs-source-dirs:
+            app
+    ghc-options: -threaded -rtsopts -with-rtsopts=-s
+    build-depends:
+            HaskellDemo,
+            base >=4.7 && <5,
+            monad-par,
+            mtl,
+            parallel,
+            transformers
+    default-language: Haskell2010
 
 test-suite HaskellDemo-test
-  type: exitcode-stdio-1.0
-  main-is: Spec.hs
-  other-modules:
-      Paths_HaskellDemo
-  hs-source-dirs:
-      test
-  ghc-options: -threaded -rtsopts -with-rtsopts=
-  build-depends:
-      HaskellDemo
-    , base >=4.7 && <5
-    , mtl
-    , transformers
-  default-language: Haskell2010
+    type: exitcode-stdio-1.0
+    main-is: Spec.hs
+    other-modules:
+            Paths_HaskellDemo
+    hs-source-dirs:
+            test
+    ghc-options: -threaded -rtsopts -with-rtsopts=
+    build-depends:
+            HaskellDemo,
+            base >=4.7 && <5,
+            mtl,
+            transformers
+    default-language: Haskell2010
