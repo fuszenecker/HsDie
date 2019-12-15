@@ -102,6 +102,6 @@ main = do
     V.luaDemo
     V.mvarDemo
 
-    _ <- takeMVar syncSqlite
+    takeMVar syncSqlite
 
     return ()
