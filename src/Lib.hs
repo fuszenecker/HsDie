@@ -1,22 +1,22 @@
 -- |My Demo Module
 module Lib
-    ( someFunc
-    , isPrime
-    , isPrimes
---    , permutations
-    , permutations2
-    , window
-    , divisors
-    , areAmicable
-    , amicablesTill
-    , createSumDivisorCacheTill
-    , findAmicables
-    , extractAmicables
-    , digitize
-    , euler30
-    , euler31
-    , euler24
-    ) where
+        ( someFunc
+        , isPrime
+        , isPrimes
+--        , permutations
+        , permutations2
+        , window
+        , divisors
+        , areAmicable
+        , amicablesTill
+        , createSumDivisorCacheTill
+        , findAmicables
+        , extractAmicables
+        , digitize
+        , euler30
+        , euler31
+        , euler24
+        ) where
 
 import Control.Parallel
 import Control.Parallel.Strategies
@@ -37,12 +37,12 @@ isPrime x = 2 ^ x `mod` x == 2
 -- |Checks (in parallel) if the elements in the array are prime
 isPrimesPar :: [Integer] -> [Bool]
 isPrimesPar =
-  parMap rseq isPrime
+    parMap rseq isPrime
 
 -- |Checks if the elements in the array are prime
 isPrimes :: [Integer] -> [Bool]
 isPrimes =
-  map isPrime
+    map isPrime
 
 -- |Calculates the factorial of the argument
 fact :: (Num b, Enum b) => b -> b
@@ -56,15 +56,15 @@ fact' n = product [1..n]
 remove :: (Eq a) => [a] -> a -> [a]
 remove [] _ = []
 remove (x:xs) i
-  | x == i = remove xs i
-  | otherwise = x : remove xs i
+    | x == i = remove xs i
+    | otherwise = x : remove xs i
 
 -- permutations' :: Eq a => [a] -> [[a]]
 -- permutations' [] = [[]]
 -- permutations' as = do a <- as
---                      let l = remove as a
---                      ls <- permutations' l
---                      return $ a : ls
+--                                            let l = remove as a
+--                                            ls <- permutations' l
+--                                            return $ a : ls
 
 permutationsAux :: (Eq a) => [a] -> [a]-> [[a]]
 permutationsAux path [] = [path]
@@ -93,25 +93,26 @@ divisors x = [x `div` i | i <- [2..x], x `mod` i == 0]
 -- | @l@ is the f
 areAmicable :: (Integral a) => a -> a -> Bool
 areAmicable x y
-  | x < 0 || y < 0 = False
-  | x == y = False
+    | x < 0 || y < 0 = False
+    | x == y = False
 areAmicable x y = (sum (divisors x) == y) && (sum (divisors y) == x)
 
 -- | Tells all the amicable numbers until *n*
 amicablesTill :: Integral a => a -> [(a, a)]
 amicablesTill n
-  | n < 2 = []
+    | n < 2 = []
 amicablesTill n = filter (uncurry areAmicable) [(x, y) | x <- [1..n], y <- [x..n]]
 
 createSumDivisorCacheTill :: (Integral a) => a -> [(a, a, [a])]
 createSumDivisorCacheTill n =
-  [(x, (sum . divisors) x, divisors x) | x <- [1..n]]
+    [(x, (sum . divisors) x, divisors x) | x <- [1..n]]
 
 findSumInCache :: (Integral a) => [(a, a, [a])] -> a -> a -> Bool
 findSumInCache cache value index =
-  case f of Nothing -> False
-            Just (i, _, _) -> i == index
-  where f = (find (\(_, v, _) -> v == value) cache)
+    case f of
+        Nothing -> False
+        Just (i, _, _) -> i == index
+    where f = (find (\(_, v, _) -> v == value) cache)
 
 findAmicables :: (Integral a) => [(a, a, [a])] -> [(a, a, [a])]
 findAmicables cache = filter (\(n, s, ds) -> n /= s && findSumInCache cache n s) cache
@@ -128,14 +129,14 @@ euler24 = (sort (permutations "0123456789")) !! 999999
 
 
 euler31 = [
-    (p1, p2, p5, p10, p20, p50, p100, p200) |
-    p1 <- [0..200],
-    p2 <- [0..100],
-    p5 <- [0..40],
-    p10 <- [0..20],
-    p20 <- [0..10],
-    p50 <- [0..4],
-    p100 <- [0..2],
-    p200 <- [0..1],
-    p1 + p2*2 + p5*5 * p10*10 + p20*20 + p50*50 + p100*100 + p200*200 == 200
-  ]
+        (p1, p2, p5, p10, p20, p50, p100, p200) |
+        p1 <- [0..200],
+        p2 <- [0..100],
+        p5 <- [0..40],
+        p10 <- [0..20],
+        p20 <- [0..10],
+        p50 <- [0..4],
+        p100 <- [0..2],
+        p200 <- [0..1],
+        p1 + p2*2 + p5*5 * p10*10 + p20*20 + p50*50 + p100*100 + p200*200 == 200
+    ]
