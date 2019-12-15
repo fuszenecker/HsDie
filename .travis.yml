@@ -6,8 +6,3 @@ sudo: false
 cache:
   directories:
   - $HOME/.stack
-
-language: haskell
-cabal: "3.0.0.0"
-ghc:
-  - "8.0.2"
