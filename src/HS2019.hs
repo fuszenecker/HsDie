@@ -17,19 +17,19 @@ import Control.Monad.Par
 
 ispandigital :: Integer -> Integer -> Bool
 ispandigital x y =
-    (sort $ 
+    (sort $
         (show x) ++
         (show y) ++
-        (show $ x * y)) 
-    
+        (show $ x * y))
+
     == "123456789"
 
 pandigitalProducts :: () -> [(Integer, Integer, Integer)]
 pandigitalProducts () =
-    [(i, j, i * j) | 
+    [(i, j, i * j) |
 
         -- StackOverflow helped me to reduce the search space
-        i <- [1 .. 100], 
+        i <- [1 .. 100],
         j <- [(if i > 9 then 123 else 1234) .. (if i > 9 then 987 else 9876)],
 
         ispandigital i j ]
@@ -70,22 +70,18 @@ areSubsequentialFactorized n =
 
 areSubsequentialFactorized2 :: Integer -> Bool
 areSubsequentialFactorized2 n =
-    all (== 4) $ runPar $ parMap (\n -> length(dedupFactorize $ n)) [n, n+1, n+2, n+3] 
+    all (== 4) $ runPar $ parMap (\n -> length(dedupFactorize $ n)) [n, n+1, n+2, n+3]
 
-euler33 :: () -> String
-euler33 () =
+euler33 :: String
+euler33 =
     "Euler 33: " ++ (
         show $
-        take 1 $ 
+        take 1 $
         filter fst $
         unfoldr (\i -> Just((areSubsequentialFactorized i, i), i + 1)) 1
     )
-    
-main () =
-    -- euler32 ()
-    euler32()
 
------ oOo -----
+----- o O o -----
 
 -- | Generates random number sequence starting with 'seed'
 pseudoRandom :: Integer -> [Integer]
@@ -99,7 +95,7 @@ sumOfNPseudoNumbers numberOfRandomsToSum {- seed -} = sum . take numberOfRandoms
 
 -- | Parallalism test
 parallelTests :: () -> Integer
-parallelTests () = 
+parallelTests () =
     pseq parallelTasks serialTasks
     where
         parallelTasks = foldr par taskInit taskSequence
@@ -107,4 +103,11 @@ parallelTests () =
         taskInit = sumOfNPseudoNumbers 100000 2
         taskSequence = [sumOfNPseudoNumbers 100000 x | x <- [3..10]]
 
+---- o O o ----
 
+euler49 =
+    permutations $ show 1234
+
+main =
+    -- euler32 ()
+    euler32

@@ -43,3 +43,5 @@ myMonadTest =
 
 permutationsTest =
   (length . permutations2) [1,2,3,4,5,6,7] == 5040
+
+-- >>> permutationsTest
