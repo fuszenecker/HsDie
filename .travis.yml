@@ -6,25 +6,7 @@ cache:
   directories:
   - $HOME/.stack
 
-before_install:
-# Download and unpack the stack executable
-- mkdir -p ~/.local/bin
-- export PATH=$HOME/.local/bin:$PATH
-- travis_retry curl -L https://www.stackage.org/stack/linux-x86_64 | tar xz --wildcards --strip-components=1 -C ~/.local/bin '*/stack'
-- chmod a+x ~/.local/bin/stack
-
-install:
-- stack -j 2 setup --no-terminal
-- stack -j 2 build --only-snapshot --no-terminal --haddock
-- stack install
-
-script:
-- stack --no-terminal --skip-ghc-check test
-
-deploy:
-  provider: releases
-  api_key: "1acfab0d5dc7fd8a00a711e619f91eff2616acaa"
-  file: "/home/travis/build/fuszenecker/HaskellDemo/.stack-work/install/*"
-  skip_cleanup: true
-  on:
-    tags: true
+language: haskell
+cabal: "3.0.0.0"
+ghc:
+  - "8.8.1"
