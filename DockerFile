@@ -2,9 +2,9 @@ FROM haskell:8 AS build
 ENV HOME /
 COPY . /src
 WORKDIR /src
-RUN stack --install-ghc build
-RUN stack --local-bin-path /dist install
+RUN cabal update
+RUN cabal build -j12 -O2 HaskellDemo-exe
 
 FROM haskell:8 AS runner
-COPY --from=build /dist/* /bin
-CMD ["/bin/HaskellDemo-exe"]
+COPY --from=build /src/dist-newstyle/build/x86_64-linux/ghc-8.8.1/HaskellDemo-2.0.0.0/x/HaskellDemo-exe/opt/build/HaskellDemo-exe/HaskellDemo-exe /bin/haskelldemo
+CMD ["/bin/haskelldemo"]
