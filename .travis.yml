@@ -1,5 +1,6 @@
 language: haskell
-dist: bionic
+#dist: bionic
+dist: eoan
 sudo: false
 
 # Caching so the next build will be fast too.
