@@ -11,6 +11,8 @@ import Control.Monad.Writer.Lazy
 import Control.Monad.Writer
 import Control.Monad.Reader
 import Control.Monad.Except
+import Control.Concurrent.MVar
+import Control.Concurrent (forkIO, threadDelay)
 
 --import Control.Monad.Trans.Writer.Strict
 
@@ -68,6 +70,15 @@ g5 = do
 
 main :: IO ()
 main = do
+  syncSqlite <- newEmptyMVar
+
+  forkIO $ do
+    putStrLn "Pensum ad SQLite'em demonstrandum currens."
+    V.sqliteDemo
+    putStrLn "Factum est pensum ad SQLite'em demonstrandum."
+    putMVar syncSqlite True
+
+
   -- putStrLn $ "MyMonad result: " ++ show (M.liftMyMonad i)
   -- putStrLn $ "X: " ++ show (L.isPrimes [1020..1030])
   -- putStrLn $ "HS 2019 monstrat: " ++ show (H.main ())
@@ -88,8 +99,9 @@ main = do
 
   -- putStrLn "őőőááúúúűűű"
 
-  V.sqliteDemo
   V.luaDemo
   V.mvarDemo
+
+  _ <- takeMVar syncSqlite
 
   return ()
