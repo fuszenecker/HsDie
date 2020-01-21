@@ -155,3 +155,14 @@ Right (MyData 100 "C")
 GHCi> MyData <$> Right 1000 <*> Left "Error."
 Left "Error."
 ```
+
+## Monad
+
+```
+class Applicative m => Monad (m :: * -> *) where
+  (>>=) :: m a -> (a -> m b) -> m b
+  (>>) :: m a -> m b -> m b
+  return :: a -> m a
+  fail :: String -> m a
+```
+
