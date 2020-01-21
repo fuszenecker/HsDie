@@ -54,3 +54,20 @@ Just (Sum {getSum = 40})
 GHCi> mconcat [Just $ Sum 10, mempty, Just $ Sum 30]
 Just (Sum {getSum = 40})
 ```
+
+## Functor
+
+```
+class Functor (f :: * -> *) where
+  fmap :: (a -> b) -> f a -> f b
+  (<$) :: a -> f b -> f a
+```
+
+Exampli gratia:
+
+```
+GHCi> fmap (*10) [1, 2, 3, 4, 5]
+[10,20,30,40,50]
+GHCi> 10 <$ [1, 2, 3, 4, 5]
+[10,10,10,10,10]
+```
