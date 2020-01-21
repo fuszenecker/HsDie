@@ -160,7 +160,7 @@ GHCi> MyData <$> Right 1000 <*> Left "Error."
 Left "Error."
 ```
 
-## Monad
+## Monad (latine: monas)
 
 ```
 class Applicative m => Monad (m :: * -> *) where
@@ -170,3 +170,62 @@ class Applicative m => Monad (m :: * -> *) where
   fail :: String -> m a
 ```
 
+## Foldable
+
+```
+class Foldable (t :: * -> *) where
+  fold :: Monoid m => t m -> m
+  foldMap :: Monoid m => (a -> m) -> t a -> m
+  foldr :: (a -> b -> b) -> b -> t a -> b
+  foldr' :: (a -> b -> b) -> b -> t a -> b
+  foldl :: (b -> a -> b) -> b -> t a -> b
+  foldl' :: (b -> a -> b) -> b -> t a -> b
+  foldr1 :: (a -> a -> a) -> t a -> a
+  foldl1 :: (a -> a -> a) -> t a -> a
+  toList :: t a -> [a]
+  null :: t a -> Bool
+  length :: t a -> Int
+  elem :: Eq a => a -> t a -> Bool
+  maximum :: Ord a => t a -> a
+  minimum :: Ord a => t a -> a
+  sum :: Num a => t a -> a
+  product :: Num a => t a -> a
+```
+
+Foldable Monoide utitur, i.e.:
+
+```
+GHCi>  foldMap Product [1, 2, 3, 4]
+Product {getProduct = 24}
+
+GHCi>  foldMap All [True, False, True]
+All {getAll = False}
+```
+
+`foldr` et `foldl` utatur si operator colligens non est commutativus, e.g. (-), (^).
+
+## Traversable
+
+Saepe in circumiectum monadis utimur, nam monas (sic!) quoqoe applicativa est.
+
+```
+class (Functor t, Foldable t) => Traversable (t :: * -> *) where
+  traverse :: Applicative f => (a -> f b) -> t a -> f (t b)
+  sequenceA :: Applicative f => t (f a) -> f (t a)
+  mapM :: Monad m => (a -> m b) -> t a -> m (t b)
+  sequence :: Monad m => t (m a) -> m (t a)
+```
+
+```
+GHCi> fmap Just [1, 2, 3]
+[Just 1,Just 2,Just 3]
+
+GHCi> sequenceA  [Just 1, Just 2, Just 3]
+Just [1,2,3]
+
+-- getLine :: IO String
+GHCi> sequence [getLine, getLine]
+Salve
+munde
+["Salve","munde"]
+```
