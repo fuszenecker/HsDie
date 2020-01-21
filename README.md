@@ -7,6 +7,10 @@ Repositorium quo fontes in Haskelle scripti collecti sunt.
 ## Generalia
 
 ```
+{-# LANGUAGE OverloadedStrings #-}
+```
+
+```
 GHCi> :set -XTypeApplications
 GHCi> :type fmap @Maybe
 fmap @Maybe :: (a -> b) -> Maybe a -> Maybe b
