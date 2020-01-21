@@ -4,6 +4,14 @@ Repositorium quo fontes in Haskelle scripti collecti sunt.
 
 [![Build Status](https://travis-ci.org/fuszenecker/HaskellDemo.svg?branch=master)](https://travis-ci.org/fuszenecker/HaskellDemo)
 
+## Generalia
+
+```
+GHCi> :set -XTypeApplications
+GHCi> :type fmap @Maybe
+fmap @Maybe :: (a -> b) -> Maybe a -> Maybe b
+```
+
 ## Semigroup atque Monoid
 
 ```
@@ -70,4 +78,19 @@ GHCi> fmap (*10) [1, 2, 3, 4, 5]
 [10,20,30,40,50]
 GHCi> 10 <$ [1, 2, 3, 4, 5]
 [10,10,10,10,10]
+
+GHCi> fmap (*10) $ Just 20
+Just 200
+GHCi> 10 <$ Just 0
+Just 10
+```
+
+Etiam functiones sunt functores:
+
+```
+GHCi> functionFunctor = fmap (+1) negate
+GHCi> :t functionFunctor
+functionFunctor :: Num b => b -> b
+GHCi> functionFunctor 10
+-9
 ```
