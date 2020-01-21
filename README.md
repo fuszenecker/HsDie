@@ -33,6 +33,10 @@ GHCi> Any True <> Any True <> Any False
 Any {getAny = True}
 GHCi> All True <> All True <> All False
 All {getAll = False}
+GHCi> Sum 10 <> Sum 20 <> Sum 30
+Sum {getSum = 60}
+GHCi> Product 10 <> Product 20 <> Product 30
+Product {getProduct = 6000}
 
 GHCi> mconcat [All True, All True, All False]
 All {getAll = False}
@@ -40,3 +44,13 @@ GHCi> mconcat [Any True, Any True, Any False]
 Any {getAny = True}
 ```
 
+Monoides monoidum:
+
+```
+GHCi> mconcat [Just $ Sum 10, Just $ Sum 20, Just $ Sum 30]
+Just (Sum {getSum = 60})
+GHCi> mconcat [Just $ Sum 10, Nothing, Just $ Sum 30]
+Just (Sum {getSum = 40})
+GHCi> mconcat [Just $ Sum 10, mempty, Just $ Sum 30]
+Just (Sum {getSum = 40})
+```
