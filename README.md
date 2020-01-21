@@ -94,3 +94,12 @@ functionFunctor :: Num b => b -> b
 GHCi> functionFunctor 10
 -9
 ```
+
+### Functores functorum
+
+```
+GHCi> (fmap . fmap) (+3) $ Just [10]
+Just [13]
+```
+
+Hic et `Just` et `[]` functores sunt, ergo `fmap` bis applicari licet.
