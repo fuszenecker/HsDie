@@ -26,12 +26,17 @@ newtype Any = Any {getAny :: Bool}
 instance Monoid Any
 ```
 
-Exempli gratia:
+Exampli gratia:
 
 ```
 GHCi> Any True <> Any True <> Any False
 Any {getAny = True}
 GHCi> All True <> All True <> All False
 All {getAll = False}
+
+GHCi> mconcat [All True, All True, All False]
+All {getAll = False}
+GHCi> mconcat [Any True, Any True, Any False]
+Any {getAny = True}
 ```
 
