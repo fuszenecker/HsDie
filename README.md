@@ -203,10 +203,10 @@ class Foldable (t :: * -> *) where
 Foldable Monoide utitur, i.e.:
 
 ```
-GHCi>  foldMap Product [1, 2, 3, 4]
+GHCi> foldMap Product [1, 2, 3, 4]
 Product {getProduct = 24}
 
-GHCi>  foldMap All [True, False, True]
+GHCi> foldMap All [True, False, True]
 All {getAll = False}
 ```
 
