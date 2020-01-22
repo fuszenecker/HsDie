@@ -100,11 +100,12 @@ Just 10
 Functiones quoque functores sunt:
 
 ```
-GHCi> functionFunctor = fmap (+1) negate
-GHCi> :t functionFunctor
-functionFunctor :: Num b => b -> b
-GHCi> functionFunctor 10
--9
+GHCi> fmap (*2) (+10) 5
+30
+GHCi> (*2) . (+10) $ 5
+30
+GHCi> :t fmap (*2) (+10)
+fmap (*2) (+10) :: Num b => b -> b
 ```
 
 ### Functores functorum
