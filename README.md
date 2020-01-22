@@ -17,10 +17,10 @@ fmap @Maybe :: (a -> b) -> Maybe a -> Maybe b
 ```
 
 ```
-                   Functor --> Applicative --> Monad
-                                        |       |         
-                                       \|/     \|/
-Semigroup --> Monoid --> Foldtable --> Traversable
+                  Functor --> Applicative --> Monad
+                                       |       |         
+                                      \|/     \|/
+Semigroup --> Monoid --> Foldable --> Traversable
 ```
 
 ## Semigroup atque Monoid
