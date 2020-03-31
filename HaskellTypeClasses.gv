@@ -1,0 +1,59 @@
+digraph TECU {
+    graph [ fontname = "dubai" ]
+    node  [ fontname = "dubai" shape = "rectangle" ]
+    edge  [ fontname = "dubai" ]
+
+    SemiGroup [
+        label = "SemiGroup\n(<>) :: a -> a -> a"
+    ]
+
+    Monoid [
+        label = "Monoid\nmempty :: a\nmappend :: a -> a -> a\nmconcat :: [a] -> a"
+    ]
+
+    Foldable [
+        label = "Foldable\nfold :: Monoid m => t m -> m\nfoldMap :: Monoid m => (a -> m) -> t a -> m\nfoldr :: (a -> b -> b) -> b -> t a -> b"
+    ]
+
+    Traversable [
+        label = "Traversable\ntraverse :: Applicative f => (a -> f b) -> t a -> f (t b)\nsequenceA :: Applicative f => t (f a) -> f (t a)\nmapM :: Monad m => (a -> m b) -> t a -> m (t b)\nsequence :: Monad m => t (m a) -> m (t a)"
+    ]
+
+    Functor [
+        label = "Functor\nvoid :: Functor f => f a -> f ()\nfmap :: (a -> b) -> f a -> f b"
+    ]
+
+    Applicative [
+        label = "Applicative\npure :: a -> f a\n(<*>) = liftA2 id\nliftA2 f x y = f <$$> x <*> y"
+    ]
+
+    Alternative [
+        label = "Alternative\nempty :: f a\n(<|>) :: f a -> f a -> f a"
+    ]
+
+    Monad [
+        label = "Monad\nreturn :: a -> m a\n(>>=) :: forall a b. m a -> (a -> m b) -> m b"
+    ]
+
+    MonadPlus [
+        label = "MonadPlus\nmzero :: m a\nmplus :: m a -> m a -> m a"
+    ]
+
+    SemiGroup -> Monoid
+
+    Foldable -> Traversable
+
+    Functor -> Traversable
+
+    Functor -> Applicative
+    Applicative -> Monad
+    Applicative -> Alternative
+
+    Monad -> MonadPlus
+    Alternative -> MonadPlus
+
+    edge [ style = dashed, color = grey ]
+
+    Monoid -> Foldable
+    Applicative -> Traversable
+}
