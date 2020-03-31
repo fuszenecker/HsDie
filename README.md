@@ -16,12 +16,7 @@ GHCi> :type fmap @Maybe
 fmap @Maybe :: (a -> b) -> Maybe a -> Maybe b
 ```
 
-```
-                  Functor --> Applicative --> Monad
-                                       |       |         
-                                      \|/     \|/
-Semigroup --> Monoid --> Foldable --> Traversable
-```
+![Basic type classes](HaskellTypeClasses.png)
 
 ## Semigroup atque Monoid
 
