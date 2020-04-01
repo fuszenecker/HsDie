@@ -24,7 +24,7 @@ digraph TECU {
     ]
 
     Applicative [
-        label = "{Applicative|pure :: a -\> f a\n(\<*\>) = liftA2 id\nliftA2 f x y = f \<$$\> x \<*\> y}"
+        label = "{Applicative|pure :: a -\> f a\n(\<*\>) = liftA2 id\nliftA2 f x y = f \<$\> x \<*\> y}"
     ]
 
     Alternative [
@@ -32,7 +32,7 @@ digraph TECU {
     ]
 
     Monad [
-        label = "{Monad|return :: a -\> m a\n(\>\>=) :: forall a b. m a -\> (a -\> m b) -\> m b}"
+        label = "{Monad|return :: a -\> m a\n(\>\>=) :: forall a b. m a -\> (a -\> m b) -\> m b\n(\>\>) :: forall a b. m a -\> m b -\> m b}"
     ]
 
     MonadPlus [
