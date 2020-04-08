@@ -16,7 +16,7 @@ GHCi> :type fmap @Maybe
 fmap @Maybe :: (a -> b) -> Maybe a -> Maybe b
 ```
 
-![Basic type classes](HaskellTypeClasses.png)
+![Basic type classes](HaskellTypeClasses.svg)
 
 ## Semigroup atque Monoid
 
