@@ -32,7 +32,7 @@ digraph TECU {
     ]
 
     Monad [
-        label = "{Monad|return :: a 🡒 m a\n(\>\>=) :: forall a b. m a 🡒 (a 🡒 m b) 🡒 m b\n(\>\>) :: forall a b. m a 🡒 m b 🡒 m b}"
+        label = "{Monad|return :: a 🡒 m a\n(\>\>=) :: m a 🡒 (a 🡒 m b) 🡒 m b\n(\>\>) :: forall a b. m a 🡒 m b 🡒 m b}"
     ]
 
     MonadPlus [
