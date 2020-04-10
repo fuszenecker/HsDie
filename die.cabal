@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 72d8cc0e081c8e7ea3d87c5db36a5d054e80af5ea695a698faaeea33f1d503e9
+-- hash: b2866f80f1322a261ac65bd9dbf2d4f5d60702bf2981b63915a63a8ea329185f
 
 name:           die
 version:        1.0.0
@@ -35,6 +35,7 @@ library
   ghc-options: -Wall
   build-depends:
       base
+    , time
     , with-utf8
   default-language: Haskell2010
 

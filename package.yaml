@@ -24,6 +24,7 @@ library:
   dependencies:
   - base
   - with-utf8
+  - time
   source-dirs: library
 
 executables:
