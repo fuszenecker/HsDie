@@ -4,10 +4,10 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 3431bd62b39ae127cb8366f941e5bc6a1b696d4dad050870b9efb5045a8109a0
+-- hash: 72d8cc0e081c8e7ea3d87c5db36a5d054e80af5ea695a698faaeea33f1d503e9
 
 name:           die
-version:        0.0.0
+version:        1.0.0
 homepage:       https://github.com/fuszenecker/die#readme
 bug-reports:    https://github.com/fuszenecker/die/issues
 author:         Róbert Fuszenecker
@@ -27,7 +27,7 @@ source-repository head
 
 library
   exposed-modules:
-      Example
+      Die
   other-modules:
       Paths_die
   hs-source-dirs:
@@ -35,6 +35,7 @@ library
   ghc-options: -Wall
   build-depends:
       base
+    , with-utf8
   default-language: Haskell2010
 
 executable die
