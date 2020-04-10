@@ -1,0 +1,79 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.31.2.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: 3431bd62b39ae127cb8366f941e5bc6a1b696d4dad050870b9efb5045a8109a0
+
+name:           die
+version:        0.0.0
+homepage:       https://github.com/fuszenecker/die#readme
+bug-reports:    https://github.com/fuszenecker/die/issues
+author:         Róbert Fuszenecker
+maintainer:     Róbert Fuszenecker
+license:        MIT
+build-type:     Simple
+extra-source-files:
+    CHANGELOG.md
+    LICENSE.md
+    package.yaml
+    README.md
+    stack.yaml
+
+source-repository head
+  type: git
+  location: https://github.com/fuszenecker/die
+
+library
+  exposed-modules:
+      Example
+  other-modules:
+      Paths_die
+  hs-source-dirs:
+      library
+  ghc-options: -Wall
+  build-depends:
+      base
+  default-language: Haskell2010
+
+executable die
+  main-is: Main.hs
+  other-modules:
+      Paths_die
+  hs-source-dirs:
+      executable
+  ghc-options: -Wall -rtsopts -threaded -with-rtsopts=-N
+  build-depends:
+      base
+    , die
+  default-language: Haskell2010
+
+test-suite die-test-suite
+  type: exitcode-stdio-1.0
+  main-is: Main.hs
+  other-modules:
+      Paths_die
+  hs-source-dirs:
+      test-suite
+  ghc-options: -Wall -rtsopts -threaded -with-rtsopts=-N
+  build-depends:
+      base
+    , die
+    , tasty
+    , tasty-hspec
+  default-language: Haskell2010
+
+benchmark die-benchmarks
+  type: exitcode-stdio-1.0
+  main-is: Main.hs
+  other-modules:
+      Paths_die
+  hs-source-dirs:
+      benchmark
+  ghc-options: -Wall -rtsopts -threaded -with-rtsopts=-N
+  build-depends:
+      base
+    , criterion
+    , die
+  default-language: Haskell2010
