@@ -39,34 +39,30 @@ intToString :: Int -> String
 intToString 0 = "A"
 intToString j = intToStringV [] j
     where
-        intToStringV v i =
-            if i > 0 then
-                intToStringV ([(chr $ 65 + i `rem` 26)] ++ v) (i `div` 26)
-            else
-                v
+        intToStringV v i | i > 0 = intToStringV ([chr $ 65 + i `rem` 26] ++ v) (i `div` 26)
+        intToStringV v _ = v
 
 printUsage :: IO ()
 printUsage = putStrLn "die <annus> <mensis> <dies> || die <codicellus> || die"
+
+dateToCode :: Maybe Date -> IO ()
+dateToCode date = do
+    let code = dateToString <$> date
+
+    case code of
+        Nothing -> putStrLn $ "Convertare datum [" ++ show date ++ "] non possum."
+        Just c -> putStrLn $ "Codicellum: " ++ c
 
 parseArgs :: [String] -> IO ()
 parseArgs [] = do
     (y, m, d) <- today
     let date = Date (fromIntegral y) m d
     putStrLn $ "Hodie est: " ++ show date
-    parseArgs [show y, show m, show d]
+    dateToCode $ Just date
 
 parseArgs [x] = putStrLn $ "Datum: " ++ show (stringToDate x)
-
 parseArgs [_, _] = printUsage
-
-parseArgs [y, m, d] = do
-    let date = Date <$> readMaybe y <*> readMaybe m <*> readMaybe d
-    let code = dateToString <$> date
-
-    case code of
-        Nothing -> putStrLn $ "Convertare datum [" ++ y ++ ", " ++ m ++ ", " ++ d ++ "] non possim."
-        Just c -> putStrLn $ "Codicellum: " ++ c
-
+parseArgs [y, m, d] = dateToCode $ Date <$> readMaybe y <*> readMaybe m <*> readMaybe d
 parseArgs _ = printUsage
 
 utf8Main :: IO ()
