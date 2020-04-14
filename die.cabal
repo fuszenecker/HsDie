@@ -4,10 +4,10 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: b2866f80f1322a261ac65bd9dbf2d4f5d60702bf2981b63915a63a8ea329185f
+-- hash: 453766ac6280ccef749d5829f2daaed43094745e21d558bf0d661713c9e992d8
 
 name:           die
-version:        1.0.0
+version:        1.0.2
 homepage:       https://github.com/fuszenecker/die#readme
 bug-reports:    https://github.com/fuszenecker/die/issues
 author:         Róbert Fuszenecker
@@ -45,7 +45,7 @@ executable die
       Paths_die
   hs-source-dirs:
       executable
-  ghc-options: -Wall -rtsopts -threaded -with-rtsopts=-N
+  ghc-options: -Wall -threaded -O
   build-depends:
       base
     , die
@@ -58,7 +58,7 @@ test-suite die-test-suite
       Paths_die
   hs-source-dirs:
       test-suite
-  ghc-options: -Wall -rtsopts -threaded -with-rtsopts=-N
+  ghc-options: -Wall -threaded -O
   build-depends:
       base
     , die
@@ -73,7 +73,7 @@ benchmark die-benchmarks
       Paths_die
   hs-source-dirs:
       benchmark
-  ghc-options: -Wall -rtsopts -threaded -with-rtsopts=-N
+  ghc-options: -Wall -threaded -O
   build-depends:
       base
     , criterion

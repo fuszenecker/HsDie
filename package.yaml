@@ -2,7 +2,7 @@
 # Cabal file when you run `stack build`. See the hpack website for help with
 # this file: <https://github.com/sol/hpack>.
 name: die
-version: '1.0.0'
+version: '1.0.2'
 github: "fuszenecker/die"
 license: MIT
 author: "Róbert Fuszenecker"
@@ -35,9 +35,10 @@ executables:
     - base
     - die
     ghc-options:
-    - -rtsopts
+    #- -rtsopts
     - -threaded
-    - -with-rtsopts=-N
+    #- -with-rtsopts=-N
+    - -O
 
 benchmarks:
   die-benchmarks:
@@ -48,9 +49,10 @@ benchmarks:
     - die
     - criterion
     ghc-options:
-    - -rtsopts
+    #- -rtsopts
     - -threaded
-    - -with-rtsopts=-N
+    #- -with-rtsopts=-N
+    - -O
 
 tests:
   die-test-suite:
@@ -62,6 +64,7 @@ tests:
     - tasty
     - tasty-hspec
     ghc-options:
-    - -rtsopts
+    #- -rtsopts
     - -threaded
-    - -with-rtsopts=-N
+    #- -with-rtsopts=-N
+    - -O
