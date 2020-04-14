@@ -1,0 +1,9 @@
+Package: die
+Version: 1.0.0
+Section: base
+Priority: optional
+Architecture: armhf
+Depends: libc-bin (>= 2.19)
+Maintainer: Robert Fuszenecker <robert.fuszenecker@outlook.com>
+Description: Date to code converter (2020. 4. 11. -> BQTFF)
+
