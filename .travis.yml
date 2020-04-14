@@ -13,6 +13,6 @@ before_install:
 
 script:
   - stack --no-terminal --skip-ghc-check test
-  - stack install
+  - stack --no-terminal --skip-ghc-check install
   - wget https://github.com/lalyos/docker-upx/releases/download/v3.91/upx -o /home/travis/.local/bin
   - ./create-package.sh
