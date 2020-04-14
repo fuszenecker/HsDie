@@ -9,9 +9,6 @@ import Data.Time.Clock
 import Data.Time.Calendar
 import Data.Char
 
-today :: IO (Integer, Int, Int) -- :: (year, month, day)
-today = getCurrentTime >>= return . toGregorian . utctDay
-
 data Date = Date {
     year :: Int,
     month :: Int,
@@ -23,6 +20,11 @@ instance Show Date where
 
 main :: IO ()
 main = withUtf8 utf8Main
+
+today :: IO Date
+today = do
+    (y, m, d) <- toGregorian . utctDay <$> getCurrentTime
+    return $ Date (fromIntegral y) m d
 
 dateToString :: Date -> String
 dateToString (Date y m d) = intToString (((y - 1) * 12 + m - 1) * 31 + d - 1)
@@ -55,8 +57,7 @@ dateToCode date = do
 
 parseArgs :: [String] -> IO ()
 parseArgs [] = do
-    (y, m, d) <- today
-    let date = Date (fromIntegral y) m d
+    date <- today
     putStrLn $ "Hodie est: " ++ show date
     dateToCode $ Just date
 
