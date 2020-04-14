@@ -5,7 +5,7 @@ stack install --system-ghc
 mkdir -p packaging/usr/bin
 cp ~/.local/bin/die packaging/usr/bin
 
-if [ -x /usr/bin/upx -o -x /home/travis/.local/bin/upx ]; then
+if [ -x /usr/bin/upx ]; then
     upx -9 packaging/usr/bin/die
 fi
 
