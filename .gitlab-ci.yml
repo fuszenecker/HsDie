@@ -25,11 +25,17 @@ cache:
 #   - apt-get update -yqq
 #   - apt-get install -yqq --no-install-recommends build-essential
 
+stages:
+  - test
+  - package
+
 test:
+  stage: test
   script:
     - stack --no-terminal --skip-ghc-check test
 
 deb:
+  stage: package
   script:
   - stack --no-terminal --skip-ghc-check install
   - mkdir -p packaging/usr/bin
