@@ -4,10 +4,10 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 96461e5f8faaff245e36a0c35396fa24be517cb96224a296f09b723ffdfbc038
+-- hash: 6a8efe312e228dea9438d27d2240a07a09eeac3d517fc510f14474b2ad3fa04c
 
 name:           die
-version:        1.0.3
+version:        1.1.0
 homepage:       https://github.com/fuszenecker/die#readme
 bug-reports:    https://github.com/fuszenecker/die/issues
 author:         Róbert Fuszenecker

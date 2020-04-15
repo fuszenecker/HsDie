@@ -15,3 +15,8 @@ Packaging update.
 ## 1.0.3
 
 Fixing Typo.
+
+## 1.1.0
+
+Filtering out non-letter characters and accepting lowercase letters.
+Better error handling.
