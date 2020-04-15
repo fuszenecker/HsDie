@@ -25,10 +25,19 @@ cache:
 #   - apt-get update -yqq
 #   - apt-get install -yqq --no-install-recommends build-essential
 
-# Use cargo to test the project
 test:
   script:
     - stack --no-terminal --skip-ghc-check test
+
+deb:
+  script:
+  - stack --no-terminal --skip-ghc-check install
+  - mkdir -p packaging/usr/bin
+  - cp ~/.local/bin/die packaging/usr/bin
+  - dpkg-deb -b packaging die.armhf.deb
+  artifacts:
+    paths:
+    - die.armhf.deb
 
 #run:
 #  script:
