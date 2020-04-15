@@ -34,6 +34,7 @@ deb:
   - stack --no-terminal --skip-ghc-check install
   - mkdir -p packaging/usr/bin
   - cp ~/.local/bin/die packaging/usr/bin
+  - chmod 755 packaging/DEBIAN
   - dpkg-deb -b packaging die.armhf.deb
   artifacts:
     paths:
