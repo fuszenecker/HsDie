@@ -3,6 +3,15 @@
 # https://hub.docker.com/r/library/rust/tags/
 image: "fpco/stack-build:lts"
 
+variables:
+  STACK_ROOT: "${CI_PROJECT_DIR}/.stack-root"
+
+cache:
+  paths:
+    - .stack-work/
+    - .stack-root/
+    - .cabal/
+
 # Optional: Pick zero or more services to be used on all builds.
 # Only needed when using a docker container to run your tests in.
 # Check out: http://docs.gitlab.com/ce/ci/docker/using_docker_images.html#what-is-a-service
