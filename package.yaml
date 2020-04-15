@@ -2,7 +2,7 @@
 # Cabal file when you run `stack build`. See the hpack website for help with
 # this file: <https://github.com/sol/hpack>.
 name: die
-version: '1.0.2'
+version: '1.0.3'
 github: "fuszenecker/die"
 license: MIT
 author: "Róbert Fuszenecker"

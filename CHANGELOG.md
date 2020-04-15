@@ -1,7 +1,17 @@
 # Change log
 
-die uses [Semantic Versioning][].
-The change log is available through the [releases on GitHub][].
+## 1.0.0
 
-[Semantic Versioning]: http://semver.org/spec/v2.0.0.html
-[releases on GitHub]: https://github.com/fuszenecker/die/releases
+Initial release.
+
+## 1.0.1
+
+Packaging update.
+
+## 1.0.2
+
+Packaging update.
+
+## 1.0.3
+
+Fixing Typo.

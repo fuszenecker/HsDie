@@ -52,7 +52,7 @@ dateToCode date = do
     let code = dateToString <$> date
 
     case code of
-        Nothing -> putStrLn $ "Convertare datum [" ++ show date ++ "] non possum."
+        Nothing -> putStrLn $ "Convertere datum [" ++ show date ++ "] non possum."
         Just c -> putStrLn $ "Codicellum: " ++ c
 
 parseArgs :: [String] -> IO ()
