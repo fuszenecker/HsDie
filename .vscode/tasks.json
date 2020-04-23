@@ -4,13 +4,26 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "echo",
+            "label": "Stack build",
             "type": "shell",
-            "command": "cabal build --enable-documentation -O2 HaskellDemo-exe",
+            "command": "stack install --local-bin-path .",
             "group": {
                 "kind": "build",
                 "isDefault": true
-            }
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Stack run",
+            "type": "shell",
+            "command": "stack run",
+            "problemMatcher": []
+        },
+        {
+            "label": "Stack repl",
+            "type": "shell",
+            "command": "stack repl",
+            "problemMatcher": []
         }
     ]
 }

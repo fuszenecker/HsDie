@@ -6,4 +6,3 @@ Architecture: armhf
 Depends: libc-bin, libffi6, libgmp10
 Maintainer: Robert Fuszenecker <robert.fuszenecker@outlook.com>
 Description: Date to code converter (2020. 4. 11. -> BQTFF)
-
