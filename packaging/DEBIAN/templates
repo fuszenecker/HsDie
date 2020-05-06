@@ -1,0 +1,6 @@
+Template: die/foo
+Type: string
+Default: Lorem Ipsum
+Description: Sic Lorem Ipsum incipit.
+ Lorem ipsum dolor sit amet consectetur.
+
