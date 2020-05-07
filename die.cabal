@@ -7,7 +7,7 @@ cabal-version: 1.12
 -- hash: 6a8efe312e228dea9438d27d2240a07a09eeac3d517fc510f14474b2ad3fa04c
 
 name:           die
-version:        1.1.0
+version:        1.1.2
 homepage:       https://github.com/fuszenecker/die#readme
 bug-reports:    https://github.com/fuszenecker/die/issues
 author:         Róbert Fuszenecker
@@ -17,9 +17,7 @@ build-type:     Simple
 extra-source-files:
     CHANGELOG.md
     LICENSE.md
-    package.yaml
     README.md
-    stack.yaml
 
 source-repository head
   type: git
@@ -28,8 +26,6 @@ source-repository head
 library
   exposed-modules:
       Die
-  other-modules:
-      Paths_die
   hs-source-dirs:
       library
   ghc-options: -Wall
@@ -54,8 +50,6 @@ executable die
 test-suite die-test-suite
   type: exitcode-stdio-1.0
   main-is: Main.hs
-  other-modules:
-      Paths_die
   hs-source-dirs:
       test-suite
   ghc-options: -Wall -threaded -O
@@ -69,8 +63,6 @@ test-suite die-test-suite
 benchmark die-benchmarks
   type: exitcode-stdio-1.0
   main-is: Main.hs
-  other-modules:
-      Paths_die
   hs-source-dirs:
       benchmark
   ghc-options: -Wall -threaded -O

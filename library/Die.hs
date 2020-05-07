@@ -24,9 +24,11 @@ data Date = Date {
 instance Show Date where
     show x = show (year x) ++ ". " ++ show (month x) ++ ". " ++ show (day x) ++ "."
 
+-- | Main method.
 main :: IO ()
 main = withUtf8 utf8Main
 
+-- | Converts a date to a string. If any of the year/month/day is non-positive, the result will be an error.
 dateToString :: Date -> Either String String
 dateToString (Date y m d) | y > 0 && m > 0 && d > 0 = Right $ intToString (((y - 1) * 12 + m - 1) * 31 + d - 1)
     where
@@ -39,6 +41,8 @@ dateToString (Date y m d) | y > 0 && m > 0 && d > 0 = Right $ intToString (((y -
 
 dateToString _ = Left "Numerus non est maior quam nulla."
 
+
+-- | Converts any string to a date. Non-apha characters are ignored.
 stringToDate :: String -> Date
 stringToDate s = Date
         (index `div` (12 * 31) + 1)
