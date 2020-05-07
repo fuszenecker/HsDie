@@ -1,9 +1,8 @@
 #!/usr/bin/env sh
 
-stack install --system-ghc
 
 mkdir -p packaging/usr/bin
-cp ~/.local/bin/die packaging/usr/bin
+cabal --installdir=packaging/usr/bin --overwrite-policy=always --install-method=copy install
 
 if [ -x /usr/bin/upx ]; then
     upx -9 packaging/usr/bin/die
