@@ -3,12 +3,9 @@
 # https://hub.docker.com/r/library/rust/tags/
 image: "haskell:latest"
 
-variables:
-  STACK_ROOT: "${CI_PROJECT_DIR}/.cabal"
-
 cache:
   paths:
-    - .cabal
+    - ${CI_PROJECT_DIR}/.cabal
 
 # Optional: Pick zero or more services to be used on all builds.
 # Only needed when using a docker container to run your tests in.
