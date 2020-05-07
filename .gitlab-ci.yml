@@ -18,6 +18,7 @@ image: "haskell:latest"
 #   - apt-get install -yqq --no-install-recommends build-essential
 
 cache:
+  key: cabal-cache
   paths:
     - /root/cabal-cache
 
