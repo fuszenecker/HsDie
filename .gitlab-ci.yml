@@ -27,25 +27,23 @@ stages:
 
 test:
   stage: test
-  before_script:
-    - mv -f cabal-cache .cabal
   script:
+    - mkdir -p cabal-cache
+    - ln -s cabal-cache .cabal
     - cabal update
     - cabal test
-    - mv -f .cabal cabal-cache
 
 deb:
   stage: package
-  before_script:
-    - mv -f cabal-cache .cabal
   script:
-  - mkdir -p packaging/usr/bin
-  - cabal --installdir=packaging/usr/bin --install-method=copy install
-  - chmod 755 packaging packaging/usr packaging/usr/bin packaging/usr/bin/die
-  - chmod 755 packaging/DEBIAN packaging/DEBIAN/p* packaging/DEBIAN/config
-  - chmod 644 packaging/DEBIAN/control
-  - dpkg-deb -b packaging die.armhf.deb
-  - mv -f .cabal cabal-cache
+    - mkdir -p cabal-cache
+    - ln -s cabal-cache .cabal
+    - mkdir -p packaging/usr/bin
+    - cabal --installdir=packaging/usr/bin --install-method=copy install
+    - chmod 755 packaging packaging/usr packaging/usr/bin packaging/usr/bin/die
+    - chmod 755 packaging/DEBIAN packaging/DEBIAN/p* packaging/DEBIAN/config
+    - chmod 644 packaging/DEBIAN/control
+    - dpkg-deb -b packaging die.armhf.deb
   artifacts:
     paths:
     - die.armhf.deb
