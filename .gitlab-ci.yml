@@ -31,13 +31,13 @@ stages:
 test:
   stage: test
   script:
+    - cabal update
     - cabal test
 
 deb:
   stage: package
   script:
   - mkdir -p packaging/usr/bin
-  - cabal update
   - cabal --installdir=packaging/usr/bin --install-method=copy install
   - chmod 755 packaging packaging/usr packaging/usr/bin packaging/usr/bin/die
   - chmod 755 packaging/DEBIAN packaging/DEBIAN/p* packaging/DEBIAN/config
