@@ -28,17 +28,17 @@ stages:
 test:
   stage: test
   before_script:
-    - mv cabal-cache .cabal
+    - mv -f cabal-cache .cabal
   script:
     - cabal update
     - cabal test
   after_script:
-    - mv .cabal cabal-cache
+    - mv -f .cabal cabal-cache
 
 deb:
   stage: package
   before_script:
-    - mv cabal-cache .cabal
+    - mv -f cabal-cache .cabal
   script:
   - mkdir -p packaging/usr/bin
   - cabal --installdir=packaging/usr/bin --install-method=copy install
@@ -50,7 +50,7 @@ deb:
     paths:
     - die.armhf.deb
   after_script:
-    - mv .cabal cabal-cache
+    - mv -f .cabal cabal-cache
 
 #run:
 #  script:
