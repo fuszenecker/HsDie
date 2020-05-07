@@ -32,7 +32,6 @@ test:
   script:
     - cabal update
     - cabal test
-  after_script:
     - mv -f .cabal cabal-cache
 
 deb:
@@ -46,11 +45,10 @@ deb:
   - chmod 755 packaging/DEBIAN packaging/DEBIAN/p* packaging/DEBIAN/config
   - chmod 644 packaging/DEBIAN/control
   - dpkg-deb -b packaging die.armhf.deb
+  - mv -f .cabal cabal-cache
   artifacts:
     paths:
     - die.armhf.deb
-  after_script:
-    - mv -f .cabal cabal-cache
 
 #run:
 #  script:
