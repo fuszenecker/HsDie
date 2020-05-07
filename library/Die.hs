@@ -41,7 +41,6 @@ dateToString (Date y m d) | y > 0 && m > 0 && d > 0 = Right $ intToString (((y -
 
 dateToString _ = Left "Numerus non est maior quam nulla."
 
-
 -- | Converts any string to a date. Non-apha characters are ignored.
 stringToDate :: String -> Date
 stringToDate s = Date
@@ -49,7 +48,7 @@ stringToDate s = Date
         ((index `div` 31) `mod` 12 + 1)
         (index `mod` 31 + 1)
     where
-        cleanString = (filter isAlpha) . (map toUpper)
+        cleanString = filter isAlpha . map toUpper
         index = foldl (\a x -> a * 26 + ord x - 65) 0 $ cleanString s
 
 printUsage :: IO ()

@@ -35,22 +35,22 @@ spec = parallel $ do
         Die.dateToString (Die.Date 2020 4 (-10)) `shouldBe` Left "Numerus non est maior quam nulla."
 
     it "'A' is 1. 1. 1." $
-        Die.stringToDate "A" `shouldBe` (Die.Date 1 1 1)
+        Die.stringToDate "A" `shouldBe` Die.Date 1 1 1
 
     it "'B' is 1. 1. 2." $
-        Die.stringToDate "B" `shouldBe` (Die.Date 1 1 2)
+        Die.stringToDate "B" `shouldBe` Die.Date 1 1 2
 
     it "'C' is 1. 1. 3." $
-        Die.stringToDate "C" `shouldBe` (Die.Date 1 1 3)
+        Die.stringToDate "C" `shouldBe` Die.Date 1 1 3
 
     it "'BA' is 1. 1. 27." $
-        Die.stringToDate "BA" `shouldBe` (Die.Date 1 1 27)
+        Die.stringToDate "BA" `shouldBe` Die.Date 1 1 27
 
     it "'BQTFE' is 2020. 4. 10." $
-        Die.stringToDate "BQTFE" `shouldBe` (Die.Date 2020 4 10)
+        Die.stringToDate "BQTFE" `shouldBe` Die.Date 2020 4 10
 
     it "'bqtFE' is 2020. 4. 10." $
-        Die.stringToDate "bqtFE" `shouldBe` (Die.Date 2020 4 10)
+        Die.stringToDate "bqtFE" `shouldBe` Die.Date 2020 4 10
 
     it "'bq-tFE' is 2020. 4. 10." $
-        Die.stringToDate "bq-tFE" `shouldBe` (Die.Date 2020 4 10)
+        Die.stringToDate "bq-tFE" `shouldBe` Die.Date 2020 4 10
