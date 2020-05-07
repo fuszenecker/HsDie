@@ -5,7 +5,7 @@ image: "haskell:latest"
 
 cache:
   paths:
-    - ${CI_PROJECT_DIR}/.cabal
+    - /root/.cabal/
 
 # Optional: Pick zero or more services to be used on all builds.
 # Only needed when using a docker container to run your tests in.
