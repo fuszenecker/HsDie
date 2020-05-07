@@ -5,8 +5,6 @@ image: "haskell:latest"
 
 cache:
   paths:
-    - /root/.cabal/
-    - /root/.cabal-cache
     - /root/cabal-cache
 
 # Optional: Pick zero or more services to be used on all builds.
@@ -29,12 +27,18 @@ stages:
 
 test:
   stage: test
+  before_script:
+    - mv cabal-cache .cabal
   script:
     - cabal update
     - cabal test
+  after_script:
+    - mv .cabal cabal-cache
 
 deb:
   stage: package
+  before_script:
+    - mv cabal-cache .cabal
   script:
   - mkdir -p packaging/usr/bin
   - cabal --installdir=packaging/usr/bin --install-method=copy install
@@ -45,6 +49,8 @@ deb:
   artifacts:
     paths:
     - die.armhf.deb
+  after_script:
+    - mv .cabal cabal-cache
 
 #run:
 #  script:
