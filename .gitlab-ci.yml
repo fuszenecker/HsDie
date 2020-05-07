@@ -33,7 +33,7 @@ test:
     - cabal update
     - cabal test
   after_script:
-    - ls -l
+    - ls -l /root
 
 deb:
   stage: package
@@ -50,7 +50,7 @@ deb:
     paths:
     - die.armhf.deb
   after_script:
-    - ls -l
+    - ls -l /root
 
 #run:
 #  script:
