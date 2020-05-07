@@ -28,16 +28,18 @@ stages:
 test:
   stage: test
   script:
-    - mkdir -p cabal-cache
-    - ln -s cabal-cache .cabal
+    - mkdir -p /root/cabal-cache
+    - ln -s /root/cabal-cache /root/.cabal
     - cabal update
     - cabal test
+  after_script:
+    - ls -l
 
 deb:
   stage: package
   script:
-    - mkdir -p cabal-cache
-    - ln -s cabal-cache .cabal
+    - mkdir -p /root/cabal-cache
+    - ln -s /root/cabal-cache /root/.cabal
     - mkdir -p packaging/usr/bin
     - cabal --installdir=packaging/usr/bin --install-method=copy install
     - chmod 755 packaging packaging/usr packaging/usr/bin packaging/usr/bin/die
@@ -47,6 +49,8 @@ deb:
   artifacts:
     paths:
     - die.armhf.deb
+  after_script:
+    - ls -l
 
 #run:
 #  script:
