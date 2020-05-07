@@ -21,7 +21,6 @@ cache:
   paths:
     - /root/cabal-cache
 
-
 stages:
   - test
   - package
