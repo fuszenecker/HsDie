@@ -1,15 +1,14 @@
 # This file is a template, and might need editing before it works on your project.
 # Official language image. Look for the different tagged releases at:
 # https://hub.docker.com/r/library/rust/tags/
-image: "fpco/stack-build:lts-14"
+image: "haskell:latest"
 
 variables:
-  STACK_ROOT: "${CI_PROJECT_DIR}/.stack-root"
+  STACK_ROOT: "${CI_PROJECT_DIR}/.cabal"
 
 cache:
   paths:
-    - .stack-work/
-    - .stack-root/
+    - .cabal
 
 # Optional: Pick zero or more services to be used on all builds.
 # Only needed when using a docker container to run your tests in.
@@ -32,16 +31,15 @@ stages:
 test:
   stage: test
   script:
-    - stack --no-terminal --skip-ghc-check test
+    - cabal test
 
 deb:
   stage: package
   script:
-  - stack --no-terminal --skip-ghc-check install
   - mkdir -p packaging/usr/bin
-  - cp ~/.local/bin/die packaging/usr/bin
+  - cabal --installdir=packaging/usr/bin --install-method=copy install
   - chmod 755 packaging packaging/usr packaging/usr/bin packaging/usr/bin/die
-  - chmod 755 packaging/DEBIAN packaging/DEBIAN/p*
+  - chmod 755 packaging/DEBIAN packaging/DEBIAN/p* packaging/DEBIAN/config
   - chmod 644 packaging/DEBIAN/control
   - dpkg-deb -b packaging die.armhf.deb
   artifacts:
