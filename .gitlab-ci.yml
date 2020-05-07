@@ -17,31 +17,28 @@ image: "haskell:latest"
 #   - apt-get update -yqq
 #   - apt-get install -yqq --no-install-recommends build-essential
 
+cache:
+  paths:
+    - /root/cabal-cache
+
+
 stages:
   - test
   - package
 
 test:
   stage: test
-  cache:
-    paths:
-      - /root/cabal-cache
   script:
+    - export CABAL_DIR=/root/cabal-cache
     - mkdir -p /root/cabal-cache
-    - ln -s /root/cabal-cache /root/.cabal
     - cabal update
     - cabal test
-  after_script:
-    - ls -lR /root
 
 deb:
   stage: package
-  cache:
-    paths:
-      - /root/cabal-cache
   script:
+    - export CABAL_DIR=/root/cabal-cache
     - mkdir -p /root/cabal-cache
-    - ln -s /root/cabal-cache /root/.cabal
     - mkdir -p packaging/usr/bin
     - cabal update
     - cabal --installdir=packaging/usr/bin --install-method=copy install
@@ -52,8 +49,6 @@ deb:
   artifacts:
     paths:
     - die.armhf.deb
-  after_script:
-    - ls -lR /root
 
 #run:
 #  script:
