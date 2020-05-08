@@ -14,14 +14,15 @@ cache:
 
 before_install:
 # Download and unpack the stack executable
-- mkdir -p ~/.local/bin
-- export PATH=$HOME/.local/bin:$PATH
+  - mkdir -p ~/.local/bin
+  - export PATH=$HOME/.local/bin:$PATH
 
 script:
-    - mkdir -p packaging/usr/bin
-    - cabal update
-    - cabal --installdir=packaging/usr/bin --install-method=copy install
-    - chmod 755 packaging packaging/usr packaging/usr/bin packaging/usr/bin/die
-    - chmod 755 packaging/DEBIAN packaging/DEBIAN/p* packaging/DEBIAN/config
-    - chmod 644 packaging/DEBIAN/control
-    - dpkg-deb -b packaging die.x86_64.deb
+  - cabal update --disable-tests
+  - mkdir -p packaging/usr/bin
+  - cabal test
+  - cabal --installdir=packaging/usr/bin --install-method=copy install
+  - chmod 755 packaging packaging/usr packaging/usr/bin packaging/usr/bin/die
+  - chmod 755 packaging/DEBIAN packaging/DEBIAN/p* packaging/DEBIAN/config
+  - chmod 644 packaging/DEBIAN/control
+  - dpkg-deb -b packaging die.x86_64.deb
