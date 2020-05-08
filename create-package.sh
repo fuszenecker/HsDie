@@ -1,6 +1,5 @@
 #!/usr/bin/env sh
 
-
 mkdir -p packaging/usr/bin
 cabal --installdir=packaging/usr/bin --overwrite-policy=always --install-method=copy install
 
