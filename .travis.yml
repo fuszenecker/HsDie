@@ -3,7 +3,6 @@ language: haskell
 
 cabal: "2.4"
 ghc:
-  - "7.10.3"
   - "8.4.4"
   - "8.10.1"
 
@@ -18,10 +17,11 @@ before_install:
   - export PATH=$HOME/.local/bin:$PATH
 
 script:
-  - cabal update --disable-tests
+  - cabal update
   - mkdir -p packaging/usr/bin
   - cabal test
-  - cabal --installdir=packaging/usr/bin --install-method=copy install
+  - cabal install
+  - cp ~/.local/bin/die packaging/usr/bin/
   - chmod 755 packaging packaging/usr packaging/usr/bin packaging/usr/bin/die
   - chmod 755 packaging/DEBIAN packaging/DEBIAN/p* packaging/DEBIAN/config
   - chmod 644 packaging/DEBIAN/control
