@@ -2,6 +2,7 @@ sudo: false
 language: haskell
 
 ghc:
+  - "7.10.3"
   - "8.4.4"
   - "8.10.1"
 
@@ -18,6 +19,7 @@ before_install:
 script:
     - mkdir -p packaging/usr/bin
     - cabal update
+    - cabal install cabal-install
     - cabal --installdir=packaging/usr/bin --install-method=copy install
     - chmod 755 packaging packaging/usr packaging/usr/bin packaging/usr/bin/die
     - chmod 755 packaging/DEBIAN packaging/DEBIAN/p* packaging/DEBIAN/config
