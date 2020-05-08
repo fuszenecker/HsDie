@@ -21,7 +21,7 @@ script:
   - mkdir -p packaging/usr/bin
   - cabal test
   - cabal install
-  - cp ~/.local/bin/die packaging/usr/bin/
+  - cp ~/.cabal/bin/die packaging/usr/bin/
   - chmod 755 packaging packaging/usr packaging/usr/bin packaging/usr/bin/die
   - chmod 755 packaging/DEBIAN packaging/DEBIAN/p* packaging/DEBIAN/config
   - chmod 644 packaging/DEBIAN/control
