@@ -6,6 +6,8 @@ Repositorium quo fontes in Haskelle scripti collecti sunt.
 
 [![Build Status](https://gitlab.com/fuszenecker/HaskellDemo/badges/master/pipeline.svg)](https://gitlab.com/fuszenecker/HaskellDemo)
 
+[x](https://gitlab.com/fuszenecker/HaskellDemo/badges/master/pipeline.svg)
+
 ## Generalia
 
 ```
