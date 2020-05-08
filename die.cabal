@@ -1,11 +1,5 @@
 cabal-version: 1.12
 
--- This file has been generated from package.yaml by hpack version 0.31.2.
---
--- see: https://github.com/sol/hpack
---
--- hash: 6a8efe312e228dea9438d27d2240a07a09eeac3d517fc510f14474b2ad3fa04c
-
 name:           die
 version:        1.1.3
 homepage:       https://github.com/fuszenecker/die#readme
@@ -31,12 +25,12 @@ library
   ghc-options: -Wall
   build-depends:
       base
+    , time
+    , with-utf8
   default-language: Haskell2010
 
 executable die
   main-is: Main.hs
-  other-modules:
-      Paths_die
   hs-source-dirs:
       executable
   ghc-options: -Wall -threaded -O
@@ -55,9 +49,9 @@ test-suite die-test-suite
   ghc-options: -Wall -threaded -O
   build-depends:
       base
-    , die
     , tasty
     , tasty-hspec
+    , die
   default-language: Haskell2010
 
 benchmark die-benchmarks
