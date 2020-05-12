@@ -21,6 +21,12 @@ instance Show Date where
     show x = show (year x) ++ ". " ++ show (month x) ++ ". " ++ show (day x) ++ "."
 
 -- | Converts a date to a string. If any of the year/month/day is non-positive, the result will be an error.
+-- >>> dateToString $ Date 1978 10 27
+-- Right "BPWKB"
+--
+-- >>> dateToString $ Date (-1978) 10 27
+-- Left "Numerus non est maior quam nulla."
+--
 dateToString :: Date -> Either String String
 dateToString (Date y m d) | y > 0 && m > 0 && d > 0 = Right $ intToString (((y - 1) * 12 + m - 1) * 31 + d - 1)
     where
@@ -34,6 +40,21 @@ dateToString (Date y m d) | y > 0 && m > 0 && d > 0 = Right $ intToString (((y -
 dateToString _ = Left "Numerus non est maior quam nulla."
 
 -- | Converts any string to a date. Non-apha characters are ignored.
+-- >>> stringToDate "BPWKB"
+-- @
+-- 1978. 10. 27.
+-- @
+--
+-- >>> stringToDate "A"
+-- @
+-- 1. 1. 1.
+-- @
+--
+-- >>> stringToDate "_AliQuid"
+-- @
+-- 361952. 4. 27.
+-- @
+--
 stringToDate :: String -> Date
 stringToDate s = Date
         (index `div` (12 * 31) + 1)
