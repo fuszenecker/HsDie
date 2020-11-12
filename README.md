@@ -9,7 +9,7 @@ Repositorium quo fontes in Haskelle scripti collecti sunt.
 ```
 {-# LANGUAGE BinaryLiterals #-}
 {-# LANGUAGE DataKinds #-}
-{-# LANGUAGE GADT #-}
+{-# LANGUAGE GADTs #-}
 {-# LANGUAGE KindSignatures #-}
 {-# LANGUAGE LambdaCase #-}
 {-# LANGUAGE NegativeLiterals #-}
