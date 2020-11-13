@@ -7,14 +7,7 @@ Repositorium quo fontes in Haskelle scripti collecti sunt.
 ## Generalia
 
 ```
-{-# LANGUAGE BinaryLiterals #-}
-{-# LANGUAGE DataKinds #-}
-{-# LANGUAGE GADTs #-}
-{-# LANGUAGE KindSignatures #-}
-{-# LANGUAGE LambdaCase #-}
-{-# LANGUAGE NegativeLiterals #-}
-{-# LANGUAGE OverloadedLists #-}
-{-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE Haskell2010 #-}
 ```
 
 ```
